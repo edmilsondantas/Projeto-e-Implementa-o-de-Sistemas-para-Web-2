@@ -191,7 +191,7 @@ O sistema disponibilizará:
 
 # 🏗️ Arquitetura do Projeto
 
-O sistema seguirá o padrão MVC:
+O sistema segue o padrão MVC:
 
 ```
 biblioteca-digital
@@ -214,6 +214,23 @@ biblioteca-digital
 ├── README.md
 └── .gitignore
 ```
+
+## ▶️ Como executar (ambiente de desenvolvimento)
+
+```bash
+php -S localhost:8000 -t public
+```
+
+Depois acesse `http://localhost:8000` no navegador.
+
+## 📍 Status da Entrega Parcial 2 — Estrutura MVC e Rotas
+
+- [x] Estrutura de pastas MVC criada (`app/Controllers`, `app/Models`, `app/Views`).
+- [x] Front Controller (`public/index.php`) recebendo todas as requisições.
+- [x] Sistema de rotas centralizado em `routes/web.php`.
+- [x] Controllers iniciais: Home, Usuário, Livro, Autor, Categoria, Empréstimo.
+- [x] Views iniciais para cada módulo (layout compartilhado + listagem).
+- [ ] CRUD completo com Models e PDO (próxima entrega).
 
 ---
 
