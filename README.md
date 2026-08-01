@@ -232,6 +232,15 @@ Depois acesse `http://localhost:8000` no navegador.
 - [x] Views iniciais para cada módulo (layout compartilhado + listagem).
 - [ ] CRUD completo com Models e PDO (próxima entrega).
 
+## 📍 Status da Entrega Parcial 3 — CRUD Inicial
+
+- [x] Conexão com o banco de dados via PDO (`Conexao.php`).
+- [x] Model `Livro` com métodos de Create (`cadastrar`) e Read (`listar`).
+- [x] Cadastro de livros (`/livros/cadastrar`) com formulário e validação dos campos obrigatórios.
+- [x] Listagem de livros (`/livros`) exibindo os dados reais cadastrados no banco.
+- [x] Demonstração funcional do fluxo completo: cadastro → listagem.
+- [ ] CRUD completo (Update e Delete) e demais entidades (próximas entregas).
+
 ---
 
 # 🗄️ Banco de Dados
