@@ -1,4 +1,16 @@
-<?php $erro = isset($_GET['erro']); ?>
+<?php
+$mensagens = [
+    'titulo'         => 'O título é obrigatório.',
+    'autor'          => 'Selecione um autor.',
+    'categoria'      => 'Selecione uma categoria.',
+    'isbn'           => 'ISBN inválido. Informe 10 ou 13 dígitos.',
+    'ano'            => 'Ano de publicação inválido.',
+    'quantidade'     => 'A quantidade deve ser pelo menos 1.',
+    'status'         => 'Status inválido.',
+    'isbn_existente' => 'Já existe um livro cadastrado com este ISBN.',
+];
+$erros = array_filter(explode(',', $_GET['erro'] ?? ''));
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,9 +22,18 @@
 <div class="container py-4">
     <h2 class="mb-4">📖 Editar livro</h2>
 
-    <?php if ($erro): ?>
-        <div class="alert alert-danger">Preencha os campos obrigatórios: título, autor e categoria.</div>
-    <?php endif; ?>
+    <?php if (!empty($erros)): ?>
+    <div class="alert alert-danger">
+        <strong>Corrija os seguintes erros:</strong>
+        <ul class="mb-0 mt-1">
+            <?php foreach ($erros as $codigo): ?>
+                <?php if (isset($mensagens[$codigo])): ?>
+                    <li><?= $mensagens[$codigo] ?></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
 
     <form action="/livros/atualizar/<?= $livro['id_livro'] ?>" method="POST" class="bg-white p-4 rounded shadow-sm">
         <div class="row">
