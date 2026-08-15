@@ -66,4 +66,51 @@ class Livro
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function buscarPorId(int $id)
+{
+    $sql = "SELECT * FROM livros WHERE id_livro = :id";
+
+    $stmt = $this->conexao->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function atualizar(int $id, array $dados)
+{
+    $sql = "UPDATE livros SET
+                id_autor = :id_autor,
+                id_categoria = :id_categoria,
+                titulo = :titulo,
+                isbn = :isbn,
+                editora = :editora,
+                ano_publicacao = :ano_publicacao,
+                quantidade = :quantidade,
+                status = :status
+            WHERE id_livro = :id";
+
+    $stmt = $this->conexao->prepare($sql);
+    $stmt->bindValue(':id_autor', $dados['id_autor']);
+    $stmt->bindValue(':id_categoria', $dados['id_categoria']);
+    $stmt->bindValue(':titulo', $dados['titulo']);
+    $stmt->bindValue(':isbn', $dados['isbn']);
+    $stmt->bindValue(':editora', $dados['editora']);
+    $stmt->bindValue(':ano_publicacao', $dados['ano_publicacao']);
+    $stmt->bindValue(':quantidade', $dados['quantidade']);
+    $stmt->bindValue(':status', $dados['status']);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    return $stmt->execute();
+}
+
+public function excluir(int $id)
+{
+    $sql = "DELETE FROM livros WHERE id_livro = :id";
+
+    $stmt = $this->conexao->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    return $stmt->execute();
+}
 }
