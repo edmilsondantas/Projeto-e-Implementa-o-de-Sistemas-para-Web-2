@@ -132,4 +132,23 @@ public function excluir(int $id)
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+    public function buscarPorIsbn(string $isbn, ?int $ignorarId = null)
+{
+    $sql = "SELECT * FROM livros WHERE isbn = :isbn";
+
+    if ($ignorarId !== null) {
+        $sql .= " AND id_livro <> :id";
+    }
+
+    $stmt = $this->conexao->prepare($sql);
+    $stmt->bindValue(':isbn', $isbn);
+
+    if ($ignorarId !== null) {
+        $stmt->bindValue(':id', $ignorarId, PDO::PARAM_INT);
+    }
+
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 }
